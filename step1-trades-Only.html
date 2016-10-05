@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script src="webcomponentsjs/webcomponents.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="http://cdn.bootcss.com/select2/3.4.5/select2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="webui/css/EikonWebUI.css">
+    <link rel="import" href="jet-app/jet-app.html">
+	<link rel="import" href="jet-plugin-quotes/jet-plugin-quotes.html"> <!-- Step 1 -->
+</head>
+<body>
+	<jet-app helpurl="http://www.google.com" mode="source" appid="demo">
+		<jet-plugin-timeseries></jet-plugin-timeseries>
+		<jet-plugin-quotes></jet-plugin-quotes>
+		<div>Chain: <input id="CHAIN" type="text" placeHolder="Chain name" value="0#.DJI" />
+		<button id="getIndexData" onclick="getIndexData()" class="nova-button">Get Index Data</button>
+	  </div>
+    <textarea id="status" type="text" rows="1" readonly> </textarea>
+		<table border=1 style="width:100%" id="myTable2">
+			<tr>
+				<td align="center">RIC</td>
+				<td align="center">Company Name</td>
+				<td align="center">Last</td>
+				<td align="center">Time Stamp</td>
+			</tr>
+		</table>
+	</jet-app>
+</body>
+<script>
+    
+	var app = document.querySelector("jet-app");
+	var onUpdateCnt = 0; // upon 1st update we then go fetch Sector and Beta for all "RICs" that were seen in onNewRow()
+	var getIndexDataCnt = 0; // how many times the "Get Index Data" button is clicked
+	
+	// Step 1 -- Callback for every new RIC code that is part of the "Chain" Quotes subscription
+	function tradeNewRow(subscription, ric, updatedValues, rowN) {
+		var RICcell = $("<td></td>");
+		if (ric) {
+			RICcell.html(ric);
+		}
+		var nameCell = $("<td align=\"left\"></td>");
+		if (updatedValues["DSPLY_NAME"]) {
+			nameCell.html(updatedValues["DSPLY_NAME"].raw);
+		}
+		else {
+			nameCell.html("");
+		}		
+		var lastCell = $("<td align=\"right\"></td>");
+		if (updatedValues["CF_LAST"]) {
+			lastCell.html(updatedValues["CF_LAST"].raw);
+		}
+		else {
+			lastCell.html(0.0);
+		}			
+        var dateTimeCell = $("<td align=\"right\"></td>");
+		if (updatedValues["CF_TIME"]) {
+			dateTimeCell.html(updatedValues["CF_TIME"].formatted);
+		}
+		else {
+			dateTimeCell.html("");
+		}
+		var newRow = $("<tr></tr>");
+		newRow.append(RICcell);
+		newRow.append(nameCell);
+		newRow.append(lastCell);
+		newRow.append(dateTimeCell);
+		$("#myTable2").append(newRow);
+	}
+	
+	// STep 1 -- Callback for	a every RIC that is part of the "Chain" for each change to last price
+	function tradeUpdateRow(subscription, ric, updatedValues, rowN) {
+		onUpdateCnt = onUpdateCnt + 1;
+		var updatedRow = $("tr:nth-child(" + (rowN + 2) + ")");
+		if (updatedValues["CF_LAST"]) {
+            var lastPx = 	Math.round(updatedValues["CF_LAST"].raw * 100)/100;		
+            var lastPxStr = lastPx.toFixed(2);
+            $("td:nth-child(3)", updatedRow).html(lastPxStr);
+		}
+		if (updatedValues["DSPLY_NAME"]) {
+	        $("td:nth-child(2)", updatedRow).html(updatedValues["DSPLY_NAME"].raw);
+		}
+		if (updatedValues["CF_TIME"]) {
+	        $("td:nth-child(4)", updatedRow).html(updatedValues["CF_TIME"].formatted);
+		}
+	}
+	
+	// Step 1 -- Called everytime the "Get Index Data" button is clicked
+	function getIndexData() {
+		if (getIndexDataCnt > 0) {
+            $("#myTable2 tbody tr").remove();
+            RICs = "";
+            subscription.stop();				
+            var RICcell = $("<td align=\"center\">RIC</td>");
+            var nameCell = $("<td align=\"center\">Company Name</td>");
+			var lastCell = $("<td align=\"center\">Last</td>");
+			var dateTimeCell=$("<td align=\"left\">Time Stamp</td>");
+			var newRow = $("<tr></tr>");
+			newRow.append(RICcell);
+			newRow.append(nameCell);
+			newRow.append(lastCell);
+			newRow.append(dateTimeCell);
+			$("#myTable2").append(newRow);  
+			onUpdateCnt = 0;
+        }
+	    getIndexDataCnt++;
+        subscription = JET.Quotes.create()  // Step 1
+		  .chain($("#CHAIN").val())
+          .rawFields("CF_LAST", "DSPLY_NAME", "CF_TIME", "RECORDTYPE")
+		  .onNewRow(tradeNewRow)
+		  .onUpdate(tradeUpdateRow)
+		  .start();	
+	}
+
+</script>
+</html>
