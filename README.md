@@ -22,4 +22,5 @@ In SMA.html a grid is used to display, for each component of the specified Chain
 # Documentation and Video
 
 - See PDF file for more elaborate documentation of this sample application
-- See Webex video for complete soup to nuts presentation of this application
+- See Webex video (.ARF extension) for very short demo of this application
+- See coming video for complete soup to nuts walk thru of the code (TBD:  will this be an .MP4 file?)
