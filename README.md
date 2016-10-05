@@ -4,7 +4,7 @@ JET2 sample application calculates the percent spread betweeen the last trade pr
 
 In SMA.html a grid is used to display, for each components of the specified Chain (put link to TR chain guide??), the following:
 
-- [RIC](Each RIC is provided by the streaming call to the Quote object via the Chain argument)
+- RIC: Each RIC is provided by the streaming call to the Quotes object via the Chain argument
 - [Company Name](Retrieved using FID DSPLY_NAME)
 - [Sector](Retrieved from call to DSS using TR.GICSSECTOR)
 - [Beta](Retrieved from call to DSS using TR.WACCBeta)
