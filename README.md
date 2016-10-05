@@ -1,4 +1,4 @@
-# % Spread Between Last and SMA on all components of a Chain
+# % Spread Between Last and SMA on components of Chain
 
 JET2 sample application calculates the percent spread betweeen the last trade price and the user supplied number of days simple moving average (SMA) using three different API's simultaneously to show how someone can rapidly develop and deploy a useful Eikon analytic that combines streaming, historical and fundemental data with simple to use and understand TR API's.  
 
