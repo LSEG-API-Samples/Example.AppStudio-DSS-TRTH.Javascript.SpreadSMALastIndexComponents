@@ -17,7 +17,7 @@ In SMA.html a grid is used to display, for each components of the specified Chai
 - [Download and Install JET2 ZIP file]()
 - [Copy JET2 files to Tomcat and start local server]()
 - [Clear Eikon Cache upon any Javascript or HTML source code changes]()
-- [Run SMA.html from Eikon Menubar]
+- [Run SMA.html from Eikon Menubar]()
 
 # Documentation and Video
 
