@@ -12,6 +12,10 @@ In SMA.html a grid is used to display, for each component of the specified Chain
 - Last:  Retrieved using FID CF_LAST for every streaming trade
 - Time Stamp:  Retrieved using FID CF_TIME for every streaming trade
 
+Below is a screeen shot of the DJI, using a 50-day SMA, from 5/17/2016:
+
+![](https://github.com/TR-API-Samples/Advanced-AppStudio-TRTH-DSS-Javascript-SpreadSMALastIndexComponents/blob/master/screenShot-DJI-50-20160517.jpg)
+
 # Setup Sandbox and Run
 
 - Download and Install JET2 ZIP file
