@@ -21,7 +21,7 @@ Below is a sample screeen shot of the application showing the DJI, using a 50-da
 - Download and Install JET2 ZIP file
 - Copy JET2 files to Tomcat and start local server
 - Clear Eikon Cache upon any Javascript or HTML source code changes
-- Run SMA.html from Eikon Menubar
+- Run [SMA.html](SMA.html) from Eikon Menubar
 
 # Documentation and Video
 
