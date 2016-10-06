@@ -26,5 +26,5 @@ Below is a sample screeen shot of the application showing the DJI, using a 50-da
 # Documentation and Video
 
 - See [PDF](JET2-Chain-Spread-SMA-Last.pdf) file for more elaborate documentation of this sample application
-- See Webex video (.ARF extension) for very short demo of this application
+- See [Webex video](JET2-Chain-Spread-SMA-Last.arf) (.ARF extension) for very short demo of this application
 - See coming video for complete soup to nuts walk thru of the code (TBD:  will this be an .MP4 file?)
