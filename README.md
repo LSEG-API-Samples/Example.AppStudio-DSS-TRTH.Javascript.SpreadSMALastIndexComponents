@@ -14,7 +14,7 @@ In [SMA.html](Advanced-AppStudio-TRTH-DSS-Javascript-SpreadSMALastIndexComponent
 
 Below is a sample screeen shot of the application showing the DJI, using a 50-day SMA, from 5/17/2016:
 
-![](https://github.com/TR-API-Samples/Advanced-AppStudio-TRTH-DSS-Javascript-SpreadSMALastIndexComponents/blob/master/screenShot-DJI-50-20160517.jpg)
+![](screenShot-DJI-50-20160517.jpg)
 
 # Setup Sandbox and Run
 
