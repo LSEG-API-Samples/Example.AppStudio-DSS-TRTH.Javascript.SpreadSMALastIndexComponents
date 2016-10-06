@@ -18,8 +18,8 @@ Below is a sample screeen shot of the application showing the DJI, using a 50-da
 
 # Setup Sandbox and Run
 
-- Download and Install ![JET2](http://amers1.apps.cp.thomsonreuters.com/apps/jet) ZIP file
-- Copy JET2 files to Tomcat http://amers1.apps.cp.thomsonreuters.com/apps/jet)and start local server
+- Download and Install [JET2](http://amers1.apps.cp.thomsonreuters.com/apps/jet) ZIP file
+- Copy JET2 files to Tomcat and start local server
 - Clear Eikon Cache upon any Javascript or HTML source code changes
 - Run [SMA.html](SMA.html) from Eikon Menubar
 
